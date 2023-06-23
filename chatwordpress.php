@@ -7,7 +7,6 @@
  * Author: [Your name]
  * Author URI: [Your website or profile URL]
  */
-
 class My_Chat_Widget extends WP_Widget {
     public function __construct() {
         parent::__construct(
@@ -19,10 +18,17 @@ class My_Chat_Widget extends WP_Widget {
 
     public function widget($args, $instance) {
         // Check if the widget is being displayed on a specific page where you want to show the shortcode element
-        if (is_page('your-page-slug')) {
+        if (is_page('[my_chatbot]')) {
             // Output the shortcode instead of the widget content
             echo do_shortcode('[mwai_chatbot_v2]');
-            return;
+            
+            echo '<div class="my-chat-widget">';
+            echo '<div class="my-chat-widget-answer"></div>';
+            echo '<input class="widefat" type="text">';
+            echo '<button class="widefat my-chat-submit-button">Send</button>';
+            echo '</div>';
+
+            //return;
         }
 
         wp_enqueue_script('my-chat-script', plugins_url('chat_script.js', __FILE__), array('jquery'), '1.0.0', true);
@@ -36,15 +42,17 @@ class My_Chat_Widget extends WP_Widget {
         if (!empty($title)) {
             echo $args['before_title'] . $title . $args['after_title'];
         }
-
+        /*
         // Widget content
         echo '<div class="my-chat-widget">';
         echo '<div class="my-chat-widget-answer"></div>';
         echo '<input class="widefat" type="text">';
         echo '<button class="widefat my-chat-submit-button">Send</button>';
-        echo '</div>';
+        echo '</div>';*/
 
         echo $args['after_widget'];
+
+        return ;
     }
 
     public function form($instance) {
@@ -178,3 +186,8 @@ function wc_frontend_manager_shortcode($atts) {
     return '<div class="wc-frontend-manager">Frontend Manager content goes here</div>';
 }
 add_shortcode('wc_frontend_manager', 'wc_frontend_manager_shortcode');
+
+
+wp_enqueue_style('my-chat-style', plugins_url('styles.css', __FILE__), array(), '1.0.0');
+
+ 

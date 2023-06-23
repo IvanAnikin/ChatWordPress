@@ -1,0 +1,32 @@
+
+.my-chat-widget {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.my-chat-widget-answer {
+    margin-bottom: 10px;
+}
+
+.my-chat-widget input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.my-chat-submit-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.my-chat-submit-button:hover {
+    background-color: #45a049;
+}

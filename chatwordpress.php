@@ -1,5 +1,3 @@
-
-
 <?php
 /**
  * Plugin Name: My Chat Plugin
@@ -20,27 +18,33 @@ class My_Chat_Widget extends WP_Widget {
     }
 
     public function widget($args, $instance) {
+        // Check if the widget is being displayed on a specific page where you want to show the shortcode element
+        if (is_page('your-page-slug')) {
+            // Output the shortcode instead of the widget content
+            echo do_shortcode('[mwai_chatbot_v2]');
+            return;
+        }
+
         wp_enqueue_script('my-chat-script', plugins_url('chat_script.js', __FILE__), array('jquery'), '1.0.0', true);
         wp_enqueue_style('my-chat-style', plugins_url('styles.css', __FILE__), array(), '1.0.0');
 
         // Output the widget content
-            echo $args['before_widget'];
+        echo $args['before_widget'];
 
-            // Widget title
-            $title = apply_filters('widget_title', $instance['title']);
-            if (!empty($title)) {
-                echo $args['before_title'] . $title . $args['after_title'];
-            }
+        // Widget title
+        $title = apply_filters('widget_title', $instance['title']);
+        if (!empty($title)) {
+            echo $args['before_title'] . $title . $args['after_title'];
+        }
 
-            // Widget content
-            echo '<div class="my-chat-widget">';
-            echo '<div class="my-chat-widget-answer"></div>';
-            echo '<input class="widefat" type="text">';
-            echo '<button class="widefat my-chat-submit-button">Send</button>';
-            echo '</div>';
+        // Widget content
+        echo '<div class="my-chat-widget">';
+        echo '<div class="my-chat-widget-answer"></div>';
+        echo '<input class="widefat" type="text">';
+        echo '<button class="widefat my-chat-submit-button">Send</button>';
+        echo '</div>';
 
-            echo $args['after_widget'];
-        
+        echo $args['after_widget'];
     }
 
     public function form($instance) {
@@ -163,3 +167,14 @@ function my_chat_send_message_callback() {
     wp_send_json($response);
 }
 
+function mwai_chatbot_v2_shortcode($atts) {
+    // Process the shortcode and return the desired output
+    return '<div class="mwai-chatbot-v2">Chatbot content goes here</div>';
+}
+add_shortcode('mwai_chatbot_v2', 'mwai_chatbot_v2_shortcode');
+
+function wc_frontend_manager_shortcode($atts) {
+    // Process the shortcode and return the desired output
+    return '<div class="wc-frontend-manager">Frontend Manager content goes here</div>';
+}
+add_shortcode('wc_frontend_manager', 'wc_frontend_manager_shortcode');

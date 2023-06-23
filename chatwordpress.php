@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: My Chat Plugin
- * Plugin URI: [Plugin homepage URL]
- * Description: [Plugin description]
+ * Plugin URI:  techdocker.com
+ * Description: WordPress Plugin for chatbot widget
  * Version: 1.0.0
- * Author: [Your name]
- * Author URI: [Your website or profile URL]
+ * Author: TechDocker s.r.o.
+ * Author URI: techdocker.com
  */
 class My_Chat_Widget extends WP_Widget {
     public function __construct() {
@@ -18,7 +18,7 @@ class My_Chat_Widget extends WP_Widget {
 
     public function widget($args, $instance) {
         // Check if the widget is being displayed on a specific page where you want to show the shortcode element
-        if (is_page('[my_chatbot]')) {
+        if (is_page('store-manager')) {
             // Output the shortcode instead of the widget content
             echo do_shortcode('[mwai_chatbot_v2]');
             
